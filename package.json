@@ -1,0 +1,24 @@
+{
+  "name": "tell-a-story",
+  "version": "0.0.1",
+  "description": "Telling a story using data visualisation",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuentinMcCarthy/tell-a-story.git"
+  },
+  "keywords": [
+    "story",
+    "data",
+    "visualisation"
+  ],
+  "author": "Quentin McCarthy and Jiah Kwon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QuentinMcCarthy/tell-a-story/issues"
+  },
+  "homepage": "https://github.com/QuentinMcCarthy/tell-a-story#readme"
+}
