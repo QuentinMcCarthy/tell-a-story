@@ -3,17 +3,37 @@
     <head>
         <meta charset="utf-8">
         <title>Data Visualization</title>
+
         <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-        <link rel="stylesheet" href="css/master.css">
+        <link rel="stylesheet" href="css/master.min.css">
     </head>
     <body>
-        <div class="wrapper">
-            <h1>Data Visualization</h1>
+        <div id="wrapper">
+			<div class="split-horizontal">
+				<div class="split-vertical">
+					<div class="visualization"></div>
+					<div class="filter"></div>
+				</div>
+				<div class="split-vertical">
+					<div class="visualization"></div>
+					<div class="filter"></div>
+				</div>
+			</div>
+			<div class="split-horizontal">
+				<div class="split-vertical">
+					<div class="visualization"></div>
+					<div class="filter"></div>
+				</div>
+				<div class="split-vertical">
+					<div class="visualization"></div>
+					<div class="filter"></div>
+				</div>
+			</div>
         </div>
 
 		<!-- jQuery -->
 		<script src="node_modules/jquery/dist/jquery.min.js"></script>
 
-        <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="js/script.min.js"></script>
     </body>
 </html>
