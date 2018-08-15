@@ -3,21 +3,21 @@ function loadData(){
 		type: "GET",
 		url: "data/surveyData.json",
 		dataType: "json",
-		success: function(data){
-			console.log(data);
-
-			transportation(data.totals.transportation);
+		success: function(dataFromSurvey){
+			console.log(dataFromSurvey);
+			transportation(dataFromSurvey.totals.transportation);
 		},
 		error: function(err){
 			console.log("Error "+err.status);
 			console.log(err);
+			console.log('work');
 		}
 	});
 }
 
-function transportation(data){
-	var titles = data.titles,
-		numbers = data.data,
+function transportation(dataFromSurvey){
+	var titles = dataFromSurvey.titles,
+		numbers = dataFromSurvey.data,
 		trains, buses, cars, walkers, bikers, others;
 
 	numbers.forEach(function(currentValue,index){
@@ -54,6 +54,25 @@ function transportation(data){
 	// }
 }
 
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart(dataFromSurvey) {
+	var data = google.visualization.arrayToDataTable([dataFromSurvey]);
+	// data.addColumn('string', 'Gender');
+	// data.addColumn('number', 'Count');
+	// dataGender.addRow(["Male", male]);
+	// dataGender.addRow(["Female", female]);
+	var options = {
+		title: 'Male & Female'
+  	};
+
+  var chart = new google.visualization.PieChart(document.querySelector('.left-top'));
+  chart.draw(data, options);
+}
+
+
 $(document).ready(function(){
 	loadData();
+
 });
