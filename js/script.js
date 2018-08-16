@@ -4,13 +4,12 @@ function loadData(){
 		url: "data/surveyData.json",
 		dataType: "json",
 		success: function(dataFromSurvey){
-			console.log(dataFromSurvey);
+			// console.log(dataFromSurvey);
 			transportation(dataFromSurvey.totals.transportation);
 		},
 		error: function(err){
 			console.log("Error "+err.status);
 			console.log(err);
-			console.log('work');
 		}
 	});
 }
@@ -18,40 +17,70 @@ function loadData(){
 function transportation(dataFromSurvey){
 	var titles = dataFromSurvey.titles,
 		numbers = dataFromSurvey.data,
-		trains, buses, cars, walkers, bikers, others;
+		trainCount = 0,
+		busCount = 0,
+		carCount = 0,
+		walkCount = 0,
+		bikeCount = 0;
 
 	numbers.forEach(function(currentValue,index){
 		for(var i = 0; i < currentValue; i++){
-			switch(titles[index]){
-				case "Train":
-					// trains.push($("<i class='fas fa-subway'>"));
+			var currTitle = titles[index];
 
-					break;
-				case "Bus":
-					console.log("Bus");
+			if(currTitle == "Train"){
+				trainCount++;
+			} else if(currTitle == "Bus"){
+				busCount++;
+			} else if(currTitle == "Car"){
+				carCount++;
+			} else if(currTitle == "Walk"){
+				walkCount++;
+			} else if(currTitle == "Bike"){
+				bikeCount++;
+			} else{
+				var splitTitle = currTitle.split(",");
 
-					break;
-				case "Car":
-					console.log("Car");
-
-					break;
-				case "Walk":
-					console.log("Walk");
-
-					break;
-				case "Bike":
-					console.log("Bike");
-
-					break;
-				default:
-					console.log("Other");
+				for(var a = 0; i < splitTitle.length; i++){
+					if(splitTitle[a] == "Train"){
+						trainCount++;
+					} else if(splitTitle[a] == "Bus"){
+						busCount++;
+					} else if(splitTitle[a] == "Car"){
+						carCount++;
+					} else if(splitTitle[a] == "Walk"){
+						walkCount++;
+					} else if(splitTitle[a] == "Bike"){
+						bikeCount++;
+					} else{
+						console.log("Invalid data");
+					}
+				}
 			}
 		}
 	});
 
-	// for(var i = 0; i < trains.length; i++){
-	// 	$("#iconVisualization").append(trains[i]);
-	// }
+	var iconClass = "fas fa-2x",
+		i;
+
+	for(i = 0; i < trainCount; i++){
+		$("#trains").append($("<i class='"+iconClass+" fa-subway'>"));
+	}
+
+	for(i = 0; i < busCount; i++){
+		$("#buses").append($("<i class='"+iconClass+" fa-bus'>"));
+	}
+
+	for(i = 0; i < carCount; i++){
+		$("#cars").append($("<i class='"+iconClass+" fa-car'>"));
+	}
+
+	for(i = 0; i < walkCount; i++){
+		$("#walks").append($("<i class='"+iconClass+" fa-walking'>"));
+	}
+
+	for(i = 0; i < bikeCount; i++){
+		$("#bikes").append($("<i class='"+iconClass+" fa-bicycle'>"));
+	}
 }
 
 google.charts.load('current', {'packages':['corechart']});
