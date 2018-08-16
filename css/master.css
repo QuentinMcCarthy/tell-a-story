@@ -17,10 +17,18 @@ body {
     width: 75vw;
 }
 
+#filters {
+	border-left: 1px solid black;
+}
+
+#filterForm > * {
+	display: block;
+}
+
 .split-horizontal {
 	float: left;
 	height: 100%;
-	width: 50%;
+	width: 33.33%;
 }
 
 .split-vertical {
