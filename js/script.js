@@ -1,18 +1,22 @@
+google.charts.load('current', {'packages':['bar']});
+google.charts.setOnLoadCallback(loadData);
+var array = [];
 function loadData(){
 	$.ajax({
 		type: "GET",
 		url: "data/surveyData.json",
 		dataType: "json",
 		success: function(dataFromSurvey){
-			console.log(dataFromSurvey);
 			transportation(dataFromSurvey.totals.transportation);
+			drawBar(dataFromSurvey.totals.gender);
+
 		},
 		error: function(err){
-			console.log("Error "+err.status);
+			console.log("Error "+ err.status);
 			console.log(err);
-			console.log('work');
 		}
 	});
+
 }
 
 function transportation(dataFromSurvey){
@@ -28,23 +32,23 @@ function transportation(dataFromSurvey){
 
 					break;
 				case "Bus":
-					console.log("Bus");
+					// console.log("Bus");
 
 					break;
 				case "Car":
-					console.log("Car");
+					// console.log("Car");
 
 					break;
 				case "Walk":
-					console.log("Walk");
+					// console.log("Walk");
 
 					break;
 				case "Bike":
-					console.log("Bike");
+					// console.log("Bike");
 
 					break;
 				default:
-					console.log("Other");
+					// console.log("Other");
 			}
 		}
 	});
@@ -54,25 +58,40 @@ function transportation(dataFromSurvey){
 	// }
 }
 
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
 
-function drawChart(dataFromSurvey) {
-	var data = google.visualization.arrayToDataTable([dataFromSurvey]);
-	// data.addColumn('string', 'Gender');
-	// data.addColumn('number', 'Count');
-	// dataGender.addRow(["Male", male]);
-	// dataGender.addRow(["Female", female]);
+// bar chart
+function drawBar(current) {
+	array.push(current);
+	JSON.stringify(array[0].data);
+
+	var dataGender = new google.visualization.DataTable();
+
+	dataGender.addColumn('string', 'Gender');
+	dataGender.addColumn('number', 'Amount');
+	array[0].data.forEach(function(currentValue,index){
+		for (var i = 0; i < array[0].data.length; i++) {
+				dataGender.addRow([
+					 array[0].titles[i],array[0].data[i],
+				]);
+			}
+});
+
+
 	var options = {
-		title: 'Male & Female'
+		title: 'Male & Female',
+		bars: 'horizontal',
+		// width: 400,
+		vAxis: {minValue: 0}
+		// backgroundColor: ''
   	};
 
-  var chart = new google.visualization.PieChart(document.querySelector('.left-top'));
-  chart.draw(data, options);
+  var chart = new google.charts.Bar(document.getElementById('barChart'));
+  chart.draw(dataGender, options);
 }
 
 
-$(document).ready(function(){
-	loadData();
-
-});
+//
+// $(document).ready(function(){
+// 	loadData();
+//
+// });
