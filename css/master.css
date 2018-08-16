@@ -22,6 +22,7 @@ body {
 }
 
 .split-vertical {
+	border: 1px solid black;
 	height: 50%;
 	padding: 5px;
 	width: 100%;
@@ -33,6 +34,7 @@ body {
 }
 
 .filter {
+	border-top: 1px solid black;
 	height: 20%;
 	width: 100%;
 }
