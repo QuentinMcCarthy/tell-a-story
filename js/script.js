@@ -1,11 +1,15 @@
+var surveyData;
+
 function loadData(){
 	$.ajax({
 		type: "GET",
 		url: "data/surveyData.json",
 		dataType: "json",
-		success: function(dataFromSurvey){
-			// console.log(dataFromSurvey);
-			transportation(dataFromSurvey.totals.transportation);
+		success: function(data){
+			// console.log(data);
+			transportation(data.totals.transportation);
+
+			surveyData = data;
 		},
 		error: function(err){
 			console.log("Error "+err.status);
@@ -14,9 +18,9 @@ function loadData(){
 	});
 }
 
-function transportation(dataFromSurvey){
-	var titles = dataFromSurvey.titles,
-		numbers = dataFromSurvey.data,
+function transportation(transportData){
+	var titles = transportData.titles,
+		numbers = transportData.data,
 		trainCount = 0,
 		busCount = 0,
 		carCount = 0,
