@@ -12,6 +12,8 @@ body {
 #wrapper {
 	border: 1px solid black;
     height: 75vh;
+	min-height: 380px;
+	min-width: 700px;
     width: 75vw;
 }
 
