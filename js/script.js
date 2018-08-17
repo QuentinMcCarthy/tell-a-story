@@ -106,13 +106,16 @@ function drawBar(current) {
 
 	dataGender.addColumn('string', 'Gender');
 	dataGender.addColumn('number', 'Amount');
-	// array[0].data.forEach(function(currentValue,index){
 	for (var i = 0; i < array[0].data.length; i++) {
 			dataGender.addRow([
 				array[0].titles[i],array[0].data[i],
 			]);
+<<<<<<< HEAD
 	}
 	// });
+=======
+	};
+>>>>>>> thursdayJ
 	var options = {
 		title: 'Before Yoobee',
 		bars: 'horizontal',
@@ -163,9 +166,7 @@ function geoChart(location) {
 	var dataSuburb  = new google.visualization.DataTable();
 	dataSuburb.addColumn('string','Suburb');
 	dataSuburb.addColumn('number','Amount');
-	// dataSuburb.addColumn('number','lat');
-	// dataSuburb.addColumn('number','lng');
-	console.log(array);
+
 	for (var i = 0; i < array[2].data.length; i++) {
 			dataSuburb.addRow([
 				array[2].titles[i], array[2].data[i]
@@ -182,9 +183,3 @@ function geoChart(location) {
 	var chart = new google.visualization.GeoChart(document.getElementById('geo'));
  	chart.draw(dataSuburb, options);
 }
-
-//
-// $(document).ready(function(){
-// 	loadData();
-//
-// });
