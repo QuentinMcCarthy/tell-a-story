@@ -9,18 +9,14 @@ function loadData(){
 		url: "data/surveyData.json",
 		dataType: "json",
 		success: function(data){
-<<<<<<< HEAD
 			// console.log(data);
 			transportation(data.totals.transportation);
 			drawBar(data.totals.beforeYoobee);
 			donutChart(data.totals.currentCourse);
-=======
 			transportation(data.totals.transportation);
 			drawBar(data.totals.beforeYoobee);
 			donutChart(data.totals.currentCourse);
 			geoChart(data.totals.suburb)
->>>>>>> thursdayJ
-
 			surveyData = data;
 		},
 		error: function(err){
@@ -144,18 +140,15 @@ function donutChart(courses) {
 			dataCourse.addRow([
 				array[1].titles[i],array[1].data[i],
 			]);
-<<<<<<< HEAD
 			console.log(array[1].titles[i]);
 			console.log(array[1].data[i]);
 	}
 	var options = {
 		// pieHole:0.3,
-=======
 	};
 	var options = {
 		title: 'Current courses Yoobee students taking',
 		pieHole:0.3,
->>>>>>> thursdayJ
 		colors: ['#d4d0db', '#ccbae2', '#ae9bc6','#a089bc','#836aa3','#664d87','#34165b','#470a96']
 	};
 
