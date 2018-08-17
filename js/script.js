@@ -136,9 +136,7 @@ function donutChart(courses) {
 				array[1].titles[i],array[1].data[i],
 			]);
 	}
-	var options = {
-		// pieHole:0.3,
-	};
+
 	var options = {
 		title: 'Current courses Yoobee students taking',
 		pieHole:0.3,
