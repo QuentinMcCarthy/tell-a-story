@@ -108,7 +108,7 @@ function drawBar(current) {
 			dataGender.addRow([
 				array[0].titles[i],array[0].data[i],
 			]);
-	};
+	}
 	// });
 	var options = {
 		title: 'Before Yoobee',
@@ -140,7 +140,7 @@ function donutChart(courses) {
 			]);
 			console.log(array[1].titles[i]);
 			console.log(array[1].data[i]);
-	};
+	}
 	var options = {
 		// pieHole:0.3,
 		colors: ['#d4d0db', '#ccbae2', '#ae9bc6','#a089bc','#836aa3','#664d87','#34165b','#470a96']
