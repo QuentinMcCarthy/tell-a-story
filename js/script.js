@@ -9,7 +9,6 @@ function loadData(){
 		url: "data/surveyData.json",
 		dataType: "json",
 		success: function(data){
-			// console.log(data);
 			transportation(data.totals.transportation);
 			drawBar(data.totals.beforeYoobee);
 			donutChart(data.totals.currentCourse);
@@ -110,12 +109,8 @@ function drawBar(current) {
 			dataGender.addRow([
 				array[0].titles[i],array[0].data[i],
 			]);
-<<<<<<< HEAD
 	}
-	// });
-=======
-	};
->>>>>>> thursdayJ
+
 	var options = {
 		title: 'Before Yoobee',
 		bars: 'horizontal',
@@ -156,7 +151,6 @@ function donutChart(courses) {
 	};
 
 	var chart = new google.visualization.PieChart(document.getElementById('donuty'));
-	// var chart = new google.visualization.PieChart(document.getElementById('donuty'));
 	chart.draw(dataCourse, options);
 
 }
@@ -177,7 +171,7 @@ function geoChart(location) {
 		resolution:'provinces',
 		displayMode: 'markers',
 		tooltip: {textStyle: {color: '#444444'}}
-};
+	};
 
 
 	var chart = new google.visualization.GeoChart(document.getElementById('geo'));
