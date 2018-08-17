@@ -10,7 +10,7 @@ function loadData(){
 			transportation(data.totals.transportation);
 			drawBar(data.totals.beforeYoobee);
 			donutChart(data.totals.currentCourse);
-			geoChart(data.totals.suburb)
+			geoChart(data.totals.suburb);
 
 		},
 		error: function(err){
@@ -74,7 +74,7 @@ function drawBar(current) {
 			dataGender.addRow([
 				array[0].titles[i],array[0].data[i],
 			]);
-	};
+	}
 	var options = {
 		title: 'Before Yoobee',
 		bars: 'horizontal',
@@ -102,7 +102,7 @@ function donutChart(courses) {
 			dataCourse.addRow([
 				array[1].titles[i],array[1].data[i],
 			]);
-	};
+	}
 	var options = {
 		title: 'Current courses Yoobee students taking',
 		pieHole:0.3,
@@ -124,7 +124,7 @@ function geoChart(location) {
 			dataSuburb.addRow([
 				array[2].titles[i], array[2].data[i]
 			]);
-	};
+	}
 	var options = {
 		region:'NZ',
 		resolution:'provinces',
