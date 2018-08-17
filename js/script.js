@@ -12,10 +12,7 @@ function loadData(){
 			transportation(data.totals.transportation);
 			drawBar(data.totals.beforeYoobee);
 			donutChart(data.totals.currentCourse);
-			transportation(data.totals.transportation);
-			drawBar(data.totals.beforeYoobee);
-			donutChart(data.totals.currentCourse);
-			geoChart(data.totals.suburb)
+			geoChart(data.totals.suburb);
 			surveyData = data;
 		},
 		error: function(err){
@@ -138,8 +135,6 @@ function donutChart(courses) {
 			dataCourse.addRow([
 				array[1].titles[i],array[1].data[i],
 			]);
-			console.log(array[1].titles[i]);
-			console.log(array[1].data[i]);
 	}
 	var options = {
 		// pieHole:0.3,
@@ -165,7 +160,7 @@ function geoChart(location) {
 			dataSuburb.addRow([
 				array[2].titles[i], array[2].data[i]
 			]);
-	};
+	}
 	var options = {
 		region:'NZ',
 		resolution:'provinces',
