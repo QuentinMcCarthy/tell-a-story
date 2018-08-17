@@ -1,4 +1,4 @@
-google.charts.load('current', {'packages':['corechart','bar']});
+google.charts.load('current', {'packages':['corechart','bar','geochart'],'mapsApiKey': 'AIzaSyCGWQknqUrD9uCL0vx-Mv5Fra41NFaHERU'});
 google.charts.setOnLoadCallback(loadData);
 var surveyData;
 var array = [];
@@ -9,10 +9,17 @@ function loadData(){
 		url: "data/surveyData.json",
 		dataType: "json",
 		success: function(data){
+<<<<<<< HEAD
 			// console.log(data);
 			transportation(data.totals.transportation);
 			drawBar(data.totals.beforeYoobee);
 			donutChart(data.totals.currentCourse);
+=======
+			transportation(data.totals.transportation);
+			drawBar(data.totals.beforeYoobee);
+			donutChart(data.totals.currentCourse);
+			geoChart(data.totals.suburb)
+>>>>>>> thursdayJ
 
 			surveyData = data;
 		},
@@ -130,7 +137,6 @@ function drawBar(current) {
 //donut Chart
 function donutChart(courses) {
 	array.push(courses);
-	console.log(array);
 	var dataCourse = new google.visualization.DataTable();
 	dataCourse.addColumn('string', 'Courses');
 	dataCourse.addColumn('number','Amount');
@@ -138,11 +144,18 @@ function donutChart(courses) {
 			dataCourse.addRow([
 				array[1].titles[i],array[1].data[i],
 			]);
+<<<<<<< HEAD
 			console.log(array[1].titles[i]);
 			console.log(array[1].data[i]);
 	}
 	var options = {
 		// pieHole:0.3,
+=======
+	};
+	var options = {
+		title: 'Current courses Yoobee students taking',
+		pieHole:0.3,
+>>>>>>> thursdayJ
 		colors: ['#d4d0db', '#ccbae2', '#ae9bc6','#a089bc','#836aa3','#664d87','#34165b','#470a96']
 	};
 
@@ -152,6 +165,30 @@ function donutChart(courses) {
 
 }
 
+function geoChart(location) {
+	array.push(location);
+	var dataSuburb  = new google.visualization.DataTable();
+	dataSuburb.addColumn('string','Suburb');
+	dataSuburb.addColumn('number','Amount');
+	// dataSuburb.addColumn('number','lat');
+	// dataSuburb.addColumn('number','lng');
+	console.log(array);
+	for (var i = 0; i < array[2].data.length; i++) {
+			dataSuburb.addRow([
+				array[2].titles[i], array[2].data[i]
+			]);
+	};
+	var options = {
+		region:'NZ',
+		resolution:'provinces',
+		displayMode: 'markers',
+		tooltip: {textStyle: {color: '#444444'}}
+};
+
+
+	var chart = new google.visualization.GeoChart(document.getElementById('geo'));
+ 	chart.draw(dataSuburb, options);
+}
 
 //
 // $(document).ready(function(){
