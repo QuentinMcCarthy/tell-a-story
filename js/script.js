@@ -35,31 +35,6 @@ function transportation(transportData){
 
 	numbers.forEach(function(currentValue,index){
 		for(var i = 0; i < currentValue; i++){
-<<<<<<< HEAD
-			switch(titles[index]){
-				case "Train":
-					// trains.push($("<i class='fas fa-subway'>"));
-
-					break;
-				case "Bus":
-					// console.log("Bus");
-
-					break;
-				case "Car":
-					// console.log("Car");
-
-					break;
-				case "Walk":
-					// console.log("Walk");
-
-					break;
-				case "Bike":
-					// console.log("Bike");
-
-					break;
-				default:
-					// console.log("Other");
-=======
 			var currTitle = titles[index];
 
 			if(currTitle == "Train"){
@@ -90,7 +65,6 @@ function transportation(transportData){
 						console.log("Invalid data");
 					}
 				}
->>>>>>> qbranch
 			}
 		}
 	});
