@@ -67,9 +67,9 @@
 				"Car",
 				"Walk",
 				"Bike",
-				"Train & Bus",
-				"Bus & Walk",
-				"Car & Bus"
+				"Train,Bus",
+				"Bus,Walk",
+				"Car,Bus"
 			],
 			"data": [10,6,1,1,0,2,1,1]
 		},
