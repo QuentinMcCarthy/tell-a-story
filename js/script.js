@@ -1,16 +1,20 @@
 google.charts.load('current', {'packages':['corechart','bar']});
 google.charts.setOnLoadCallback(loadData);
+var surveyData;
 var array = [];
+
 function loadData(){
 	$.ajax({
 		type: "GET",
 		url: "data/surveyData.json",
 		dataType: "json",
-		success: function(dataFromSurvey){
-			transportation(dataFromSurvey.totals.transportation);
-			drawBar(dataFromSurvey.totals.beforeYoobee);
-			donutChart(dataFromSurvey.totals.currentCourse);
+		success: function(data){
+			// console.log(data);
+			transportation(data.totals.transportation);
+			drawBar(data.totals.beforeYoobee);
+			donutChart(data.totals.currentCourse);
 
+			surveyData = data;
 		},
 		error: function(err){
 			console.log("Error "+ err.status);
@@ -20,43 +24,73 @@ function loadData(){
 
 }
 
-function transportation(dataFromSurvey){
-	var titles = dataFromSurvey.titles,
-		numbers = dataFromSurvey.data,
-		trains, buses, cars, walkers, bikers, others;
+function transportation(transportData){
+	var titles = transportData.titles,
+		numbers = transportData.data,
+		trainCount = 0,
+		busCount = 0,
+		carCount = 0,
+		walkCount = 0,
+		bikeCount = 0;
 
 	numbers.forEach(function(currentValue,index){
 		for(var i = 0; i < currentValue; i++){
-			switch(titles[index]){
-				case "Train":
-					// trains.push($("<i class='fas fa-subway'>"));
+			var currTitle = titles[index];
 
-					break;
-				case "Bus":
-					// console.log("Bus");
+			if(currTitle == "Train"){
+				trainCount++;
+			} else if(currTitle == "Bus"){
+				busCount++;
+			} else if(currTitle == "Car"){
+				carCount++;
+			} else if(currTitle == "Walk"){
+				walkCount++;
+			} else if(currTitle == "Bike"){
+				bikeCount++;
+			} else{
+				var splitTitle = currTitle.split(",");
 
-					break;
-				case "Car":
-					// console.log("Car");
-
-					break;
-				case "Walk":
-					// console.log("Walk");
-
-					break;
-				case "Bike":
-					// console.log("Bike");
-
-					break;
-				default:
-					// console.log("Other");
+				for(var a = 0; i < splitTitle.length; i++){
+					if(splitTitle[a] == "Train"){
+						trainCount++;
+					} else if(splitTitle[a] == "Bus"){
+						busCount++;
+					} else if(splitTitle[a] == "Car"){
+						carCount++;
+					} else if(splitTitle[a] == "Walk"){
+						walkCount++;
+					} else if(splitTitle[a] == "Bike"){
+						bikeCount++;
+					} else{
+						console.log("Invalid data");
+					}
+				}
 			}
 		}
 	});
 
-	// for(var i = 0; i < trains.length; i++){
-	// 	$("#iconVisualization").append(trains[i]);
-	// }
+	var iconClass = "fas fa-2x",
+		i;
+
+	for(i = 0; i < trainCount; i++){
+		$("#trains").append($("<i class='"+iconClass+" fa-subway'>"));
+	}
+
+	for(i = 0; i < busCount; i++){
+		$("#buses").append($("<i class='"+iconClass+" fa-bus'>"));
+	}
+
+	for(i = 0; i < carCount; i++){
+		$("#cars").append($("<i class='"+iconClass+" fa-car'>"));
+	}
+
+	for(i = 0; i < walkCount; i++){
+		$("#walks").append($("<i class='"+iconClass+" fa-walking'>"));
+	}
+
+	for(i = 0; i < bikeCount; i++){
+		$("#bikes").append($("<i class='"+iconClass+" fa-bicycle'>"));
+	}
 }
 
 
@@ -74,7 +108,7 @@ function drawBar(current) {
 			dataGender.addRow([
 				array[0].titles[i],array[0].data[i],
 			]);
-	};
+	}
 	// });
 	var options = {
 		title: 'Before Yoobee',
@@ -106,13 +140,14 @@ function donutChart(courses) {
 			]);
 			console.log(array[1].titles[i]);
 			console.log(array[1].data[i]);
-	};
+	}
 	var options = {
-		pieHole:0.3,
+		// pieHole:0.3,
 		colors: ['#d4d0db', '#ccbae2', '#ae9bc6','#a089bc','#836aa3','#664d87','#34165b','#470a96']
 	};
 
 	var chart = new google.visualization.PieChart(document.getElementById('donuty'));
+	// var chart = new google.visualization.PieChart(document.getElementById('donuty'));
 	chart.draw(dataCourse, options);
 
 }

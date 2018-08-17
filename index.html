@@ -20,7 +20,13 @@
 				</div>
 				<div class="split-vertical left-botton">
 					<div class="visualization">
-						<div id="iconVisualization"></div>
+						<div id="iconVisualization">
+							<div id="trains"></div>
+							<div id="buses"></div>
+							<div id="cars"></div>
+							<div id="walks"></div>
+							<div id="bikes"></div>
+						</div>
 					</div>
 					<div class="filter"></div>
 				</div>
@@ -38,13 +44,24 @@
 					<div class="filter"></div>
 				</div>
 			</div>
+			<div id="filters" class="split-horizontal">
+				<form id="filterForm" action="index.html" method="post">
+					<label for="age">Age</label>
+					<input type="number" name="ageLower" value="0" min="0">
+					<input type="number" name="ageHigher" value="0" min="0">
+
+					<label for="gender">Gender</label>
+					<input type="text" name="gender" value="All">
+
+					<input type="submit" name="submit" value="Filter">
+				</form>
+			</div>
         </div>
 
 		<!-- jQuery -->
-		<!-- <script src="node_modules/jquery-knob/dist/jquery.knob.min.js"></script> -->
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="node_modules/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="js/script.js"></script>
+        <script src="js/script.js"></script>
         <!-- <script type="text/javascript" src="js/script.js"></script> -->
     </body>
 </html>
